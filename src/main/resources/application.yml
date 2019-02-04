@@ -1,0 +1,15 @@
+---
+spring:
+  profiles: cloud
+  application:
+   name: currency-conversion-service
+eureka:
+  instance:
+    nonSecurePort: 80
+    hostname: ${vcap.application.uris[0]}
+  client:
+    service-url:
+      defaultZone: ${vcap.services.eureka.credentials.url}
+forex-service:
+  ribbon:
+    listofServers: forex1-service.local.pcfdev.io,forex2-service.local.pcfdev.io
